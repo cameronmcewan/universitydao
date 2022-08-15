@@ -3,8 +3,8 @@
 pragma solidity ^0.8.7;
 
 interface IdaoContract {
-    function balanceOf(address, uint256) external view returns (uint256);
-}
+        function balanceOf(address, uint256) external view returns (uint256);
+    }
 
 contract Dao {
 
@@ -46,7 +46,7 @@ contract Dao {
     event proposalCreated(
         uint256 id,
         string description,
-        unit256 maxVotes,
+        uint256 maxVotes,
         address proposer
     );
 
@@ -82,7 +82,7 @@ contract Dao {
     function checkVoteEligibility(uint256 _id, address _voter) private view returns (
         bool
     ){
-        for (uint256 i=0; i < Proposals[_id].canVote.length; i++){
+        for (uint256 i=0; i < Proposals[_id].canVote.length; i++) {
             if (Proposals[_id].canVote[i] == _voter) {
             return true;
             }
@@ -93,7 +93,7 @@ contract Dao {
     // createProposal is a public function so anyone can call it
     // check that the msg.sender actually holds one of the NFTs we've set in the validTokens array
     function createProposal(string memory _description, address[] memory _canVote) public {
-        require(checkProposalEligibility(msg_sender), "Only NFT holders can put forth Proposals");
+        require(checkProposalEligibility(msg.sender), "Only NFT holders can put forth Proposals");
 
         // functionality of the new proposal
         proposal storage newProposal = Proposals[nextProposal]; // increment nextProposal, initially 1
@@ -108,6 +108,7 @@ contract Dao {
         emit proposalCreated(nextProposal, _description, _canVote.length, msg.sender);
         // increment the value of nextProposals to avoid duplicate proposals
         nextProposal++;
+    }
 
     // now create functionality for casting a vote on a proposal
     function voteOnProposal(uint256 _id, bool _vote) public {
@@ -141,10 +142,10 @@ contract Dao {
         proposal storage p = Proposals[_id];
 
         if(Proposals[_id].votesDown < Proposals[_id].votesUp){
-            p.passed
+            p.passed = true;
         }
 
-        p.countConducted = true
+        p.countConducted = true;
 
         emit proposalCount(_id, p.passed);
     }
