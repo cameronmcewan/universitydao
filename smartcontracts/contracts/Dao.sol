@@ -120,7 +120,7 @@ contract Dao {
 
         if(_vote) {
             p.votesUp++;
-        }else{
+        } else{
             p.votesDown++;
         }
 
