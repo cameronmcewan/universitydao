@@ -1,7 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-etherscan");
 const dotenv = require("dotenv");
-const { task } = require("hardhat/config");
+// const { task } = require("hardhat/config");
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 // You need to export an object to set up your config
-// Got to https://hardhat.org/config/ to learn more
+// Go to https://hardhat.org/config/ to learn more
 
 /**
  * @type import('hardhat/config').HardhatUserConfig 
