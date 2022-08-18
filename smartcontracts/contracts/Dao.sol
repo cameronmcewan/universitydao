@@ -17,10 +17,10 @@ contract Dao {
     constructor(){
         owner = msg.sender;
         nextProposal = 1;
-        // opensea NFT token contract address 
-        daoContract = IdaoContract(0x2953399124F0cBB46d2CbACD8A89cF0599974963);
+        // NFT contract address 
+        daoContract = IdaoContract(0x7A20Ae8d1489B5d7e892A47957f329d101725491);
         // Token ID of valid tokens to hold
-        validTokens = [34131879119057639850216237420052877058068268857359460440862859029385901506561, 34131879119057639850216237420052877058068268857359460440862859030485413134346];
+        validTokens = [1];
     }
     
     // struct defines the structure for a proposal in the DAO and holds the data for each proposal
