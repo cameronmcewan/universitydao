@@ -18,7 +18,7 @@ const Home = () => {
 
   async function createProposal(newProposal) {
     let options = {
-      contractAddress: "0xF304Ddf294d05c80995FB0702b40DfEA8E48582a",
+      contractAddress: "0x398c7995bf4056791092a66FD918f6B6Bc172fB4",
       functionName: "createProposal",
       abi: [
         {
@@ -130,9 +130,8 @@ const Home = () => {
 
       const fetchTokenIdOwners = async () => {
         const options = {
-          address: "0x2953399124F0cBB46d2CbACD8A89cF0599974963",
-          token_id:
-            "34885103611559094078416375598166902696017567311370712658413208238551126245396",
+          address: "0x7A20Ae8d1489B5d7e892A47957f329d101725491",
+          token_id: ["1","4"],
           chain: "mumbai",
         };
         const tokenIdOwners = await Web3Api.token.getTokenIdOwners(options);

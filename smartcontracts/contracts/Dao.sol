@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.0;
 // Author: @cameronmcewan
 
 interface IdaoContract {
@@ -20,7 +20,7 @@ contract Dao {
         // NFT contract address 
         daoContract = IdaoContract(0x7A20Ae8d1489B5d7e892A47957f329d101725491);
         // Token ID of valid tokens to hold
-        validTokens = [1];
+        validTokens = [0,1,2,3,4,5];
     }
     
     // struct defines the structure for a proposal in the DAO and holds the data for each proposal
