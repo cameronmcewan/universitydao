@@ -131,7 +131,7 @@ const Home = () => {
       const fetchTokenIdOwners = async () => {
         const options = {
           address: "0x7A20Ae8d1489B5d7e892A47957f329d101725491",
-          token_id: ["1","4"],
+          token_id: [1,2,3,4],
           chain: "mumbai",
         };
         const tokenIdOwners = await Web3Api.token.getTokenIdOwners(options);

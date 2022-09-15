@@ -3,7 +3,7 @@ const hre = require("hardhat");
 async function main() {
   
     // Start deployment, returning a promise that resolves to a contract object
-    const Passport = await hre.ethers.getContractFactory("Passport")
+    const Passport = await hre.ethers.getContractFactory("MyPassport")
     const passport = await Passport.deploy()
 
     await passport.deployed()

@@ -7,7 +7,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(API_URL);
 
-const contract = require("../artifacts/contracts/NFT.sol/MyNFT.json");
+const contract = require("../artifacts/contracts/Passport.sol/Passport.json");
 const contractAddress = "0x7A20Ae8d1489B5d7e892A47957f329d101725491";
 const nftContract = new web3.eth.Contract(contract.abi, contractAddress);
 

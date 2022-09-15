@@ -1,19 +1,10 @@
-require("@nomiclabs/hardhat-waffle");
-require("@nomiclabs/hardhat-etherscan");
+require("@nomicfoundation/hardhat-toolbox");
 const dotenv = require("dotenv");
-// const { task } = require("hardhat/config");
+require("@nomiclabs/hardhat-etherscan");
+require("./tasks/block-number")
+require("./tasks/accounts")
 
 dotenv.config();
-
-// This is a sample Hardhat task. To learn how to create your own go to 
-//  https://hardhat.org/guides/create-task.html 
-task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
-
-  for(const account of accounts) {
-    console.log(account.address);
-  }
-});
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
@@ -21,15 +12,38 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 /**
  * @type import('hardhat/config').HardhatUserConfig 
  */
+
+const GOERLI_RPC_URL = process.env.ETH_GOERLI;
+const MUMBAI_RPC_URL = process.env.POLYGON_MUMBAI;
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
+
 module.exports = {
   solidity: "0.8.6",
+  defaultNetwork: "hardhat",
   networks: {
+    localhost: {
+      url: "http://127.0.0.1:8545/",
+      // accounts: Provided by Hardhat
+      chainId: 31337
+    },
+    // hardhat: {
+    //   forking: {
+    //     url: GOERLI_RPC_URL
+    //   }
+    // },
+    goerli: {
+      url: GOERLI_RPC_URL,
+      accounts: [PRIVATE_KEY],
+      chainId: 5
+    },
     mumbai: {
-      url: process.env.POLYGON_MUMBAI,
-      accounts: [process.env.PRIVATE_KEY]
+      url: MUMBAI_RPC_URL,
+      accounts: [PRIVATE_KEY],
+      chainId: 80001
     },
   },
   etherscan: {
-    apiKey: process.env.API_KEY,
+    apiKey: ETHERSCAN_API_KEY,
   }
 };

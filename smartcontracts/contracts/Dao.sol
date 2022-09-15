@@ -18,9 +18,9 @@ contract Dao {
         owner = msg.sender;
         nextProposal = 1;
         // NFT contract address 
-        daoContract = IdaoContract(0x7A20Ae8d1489B5d7e892A47957f329d101725491);
+        daoContract = IdaoContract(0x1BBd432443c1572b9B1Ce9996BE34C1d9D243B4C);
         // Token ID of valid tokens to hold
-        validTokens = [0,1,2,3,4,5];
+        validTokens = [ 0 ];
     }
     
     // struct defines the structure for a proposal in the DAO and holds the data for each proposal
@@ -94,7 +94,7 @@ contract Dao {
     // createProposal is a public function so anyone can call it
     // check that the msg.sender actually holds one of the NFTs we've set in the validTokens array
     function createProposal(string memory _description, address[] memory _canVote) public {
-        require(checkProposalEligibility(msg.sender), "Only NFT holders can put forth Proposals");
+        // require(checkProposalEligibility(msg.sender), "Only NFT holders can put forth Proposals");
 
         // functionality of the new proposal
         proposal storage newProposal = Proposals[nextProposal]; // increment nextProposal, initially 1

@@ -1,22 +1,44 @@
-const hre = require("hardhat");
+// ~~~~~~ imports ~~~~~~
+
+const { ethers, run, network } = require("hardhat");
+
+
+// ~~~~~~ async main ~~~~~~
 
 async function main() {
-  // const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  // const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  // const undaoTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
-
-  // const daoedAmount = hre.ethers.utils.parseEther("1");
-
-  const Dao = await hre.ethers.getContractFactory("Dao");
+  const Dao = await ethers.getContractFactory("Dao");
+  console.log("Deploying contract...")
   const dao = await Dao.deploy();
-
   await dao.deployed();
-
   console.log("Dao deployed to:", dao.address);
+
+  // only call verify function when working with test network (that can be verified)
+  console.log(network.config)
+  if (network.config.chainId === 5 && process.env.ETHERSCAN_API_KEY) {
+    console.log("Waiting for block txes...")
+    await dao.deployTransaction.wait(6)
+    await verify(dao.address, [])
+  }
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
+async function verify(contractAddress, args) {
+  console.log("Verifying contract...");
+  try {
+    await run("verify:verify", {
+      address: contractAddress,
+      constructorArguments: args,
+    })
+  } catch (e) {
+    if (e.message.toLowerCase().includes("already verified")) {
+      console.log("Already Verified!")
+    } else {
+      console.log(e)
+    }
+  }
+}
+
+// ~~~~~~ main ~~~~~~
+
 main()
   .then(() => process.exit(0))
   .catch((error) => {
