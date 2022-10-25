@@ -50,7 +50,7 @@ const Home = () => {
     await contractProcessor.fetch({
       params: options,
       onSuccess: () => {
-        console.log("Proposal Succesful");
+        console.log("Proposal Successful");
         setSub(false);
       },
       onError: (error) => {
