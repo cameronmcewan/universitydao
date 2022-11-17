@@ -69,7 +69,7 @@ const Proposal = () => {
   async function castVote(upDown) {
     
     let options = {
-      contractAddress: "0xc6c3E8d2E8126ecDbb869b5fA193d3746FBd1F63",
+      contractAddress: "0xF1B01483416f403a449cC01B72E9879194Ee0FF8",
       functionName: "voteOnProposal",
       abi: [
         {
